@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mix Nodes | Professional Web3 Node Validator</title>
+    <style>
+        :root {
+            --bg-deep: #0A1128;
+            --bg-surface: #001F54;
+            --bg-card: rgba(0, 31, 84, 0.6);
+            --primary: #00A8E8;
+            --primary-glow: rgba(0, 168, 232, 0.4);
+            --text-main: #F4F6F9;
+            --text-muted: #8E9AAF;
+            --border-color: rgba(0, 168, 232, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background-color: rgba(10, 17, 40, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .btn-nav {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--primary);
+            color: var(--bg-deep);
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 8% 100px 8%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #001F54 0%, #0A1128 70%);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.2;
+            max-width: 800px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+            text-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--bg-deep);
+            padding: 14px 35px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 168, 232, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--primary-glow);
+        }
+
+        /* Container & Sections Shared */
+        .container {
+            padding: 80px 8%;
+        }
+
+        section h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+
+        section h2 span {
+            color: var(--primary);
+        }
+
+        /* Cards Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 40px 30px;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 168, 232, 0.15);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            fill: var(--primary);
+            margin-bottom: 25px;
+            filter: drop-shadow(0 0 8px var(--primary-glow));
+        }
+
+        .card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        /* Commission Table Section */
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 18px 24px;
+        }
+
+        th {
+            background-color: rgba(0, 168, 232, 0.1);
+            color: var(--primary);
+            font-weight: 600;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        td {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .highlight-row {
+            background-color: rgba(0, 168, 232, 0.05);
+            font-weight: 600;
+        }
+
+        .tag-active {
+            background-color: var(--primary);
+            color: var(--bg-deep);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #030712;
+            padding: 40px 8%;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header { padding: 20px 5%; }
+            nav { display: none; }
+            .hero h1 { font-size: 34px; }
+            .container { padding: 60px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="logo">
+            <svg style="width:28px; height:28px; fill:var(--primary)" viewBox="0 0 24 24">
+                <path d="M12,2L2,7L12,12L22,7L12,2M2,17L12,22L22,17L12,12L2,17M2,12L12,17L22,12L12,7L2,12Z"/>
+            </svg>
+            Mix<span>Nodes</span>
+        </div>
+        <nav>
+            <a href="#services">Services</a>
+            <a href="#features">Advantages</a>
+            <a href="#rates">Commission Rates</a>
+            <a href="#contact" class="btn-nav">Launch Node</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Reliable <span>Validator Infrastructure</span> for Your Web3 Networks</h1>
+        <p>Mix Nodes runs enterprise-grade professional validator nodes with high-tier security and maximum uptime to empower our partner blockchain ecosystems.</p>
+        <a href="#features" class="btn-primary">Explore Advantages</a>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="container">
+        <h2>Our Core <span>Services</span></h2>
+        <div class="grid">
+            <!-- Card 1 -->
+            <div class="card">
+                <svg class="card-icon" viewBox="0 0 24 24">
+                    <path d="M12,16A3,3 0 0,1 9,13C9,11.88 9.61,10.9 10.5,10.39L10.5,4.5A1.5,1.5 0 0,1 12,3A1.5,1.5 0 0,1 13.5,4.5L13.5,10.39C14.39,10.9 15,11.88 15,13A3,3 0 0,1 12,16M12,18A5,5 0 0,0 17,13C17,10.95 15.74,9.2 13.95,8.47L13.95,4.5A1.95,1.95 0 0,0 12,2.55A1.95,1.95 0 0,0 10.05,4.5L10.05,8.47C8.26,9.2 7,10.95 7,13A5,5 0 0,0 12,18Z"/>
+                </svg>
+                <h3>Operational Validator</h3>
+                <p>Running full institutional validator nodes for Proof-of-Stake (PoS) networks to guarantee flawless consensus execution.</p>
+            </div>
+            <!-- Card 2 -->
+            <div class="card">
+                <svg class="card-icon" viewBox="0 0 24 24">
+                    <path d="M12,2L1,21H23M12,6L19.8,19H4.2"/>
+                </svg>
+                <h3>Decentralized Infra</h3>
+                <p>Deploying a robust multi-cloud and bare-metal architecture to prevent any single point of failure across partner protocols.</p>
+            </div>
+            <!-- Card 3 -->
+            <div class="card">
+                <svg class="card-icon" viewBox="0 0 24 24">
+                    <path d="M12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7Z"/>
+                </svg>
+                <h3>Multi-layered Security</h3>
+                <p>Advanced DDoS mitigation systems alongside hardware-based Key Management Systems (KMS) to secure all staking assets.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advantages Section -->
+    <section id="features" class="container" style="background-color: rgba(0, 31, 84, 0.2);">
+        <h2>Why Partner with <span>Mix Nodes</span>?</h2>
+        <div class="grid">
+            <!-- Advantage 1 -->
+            <div class="card">
+                <svg class="card-icon" viewBox="0 0 24 24">
+                    <path d="M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M12 20C7.6 20 4 16.4 4 12S7.6 4 12 4 20 7.6 20 12 16.4 20 12 20M12.5 7H11V13L16.2 16.2L17 14.9L12.5 12.2V7Z"/>
+                </svg>
+                <h3>99.99% Guaranteed Uptime</h3>
+                <p>Automated 24/7 monitoring systems engineered to keep your validators permanently active while eliminating slashing risks.</p>
+            </div>
+            <!-- Advantage 2 -->
+            <div class="card">
+                <svg class="card-icon" viewBox="0 0 24 24">
+                    <path d="M12,5.5A3.5,3.5 0 0,1 15.5,9A3.5,3.5 0 0,1 12,12.5A3.5,3.5 0 0,1 8.5,9A3.5,3.5 0 0,1 12,5.5M5,8C5.56,8 6.08,8.15 6.53,8.42C6.38,9.85 6.8,11.27 7.66,12.38C7.16,13.34 6.16,14 5,14A3,3 0 0,1 2,11A3,3 0 0,1 5,8M19,8A3,3 0 0,1 22,11A3,3 0 0,1 19,14C17.84,14 16.84,13.34 16.34,12.38C17.2,11.27 17.62,9.85 17.47,8.42C17.92,8.15 18.44,8 19,8M5.5,18.25C5.5,16 8,14.5 10.5,14.5C10.74,14.5 11,14.53 11.25,14.57C10.47,15.57 10.03,16.89 10.05,18.25H5.5M18.5,18.25H13.95C13.97,16.89 13.53,15.57 12.75,14.57C13,14.53 13.26,14.5 13.5,14.5C16,14.5 18.5,16 18.5,18.25M12,16C13.1,16 14.8,16.5 14.95,17.25H9.05C9.2,16.5 10.9,16 12,16Z"/>
+                </svg>
+                <h3>Veteran Expert Team</h3>
+                <p>Managed by elite DevOps engineers and cybersecurity specialists with verified long-term track records in the crypto space.</p>
+            </div>
+            <!-- Advantage 3 -->
+            <div class="card">
+                <svg class="card-icon" viewBox="0 0 24 24">
+                    <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,6V14H13V6H11M11,16V18H13V16H11Z"/>
+                </svg>
+                <h3>Absolute Transparency</h3>
+                <p>We deliver open real-time metric dashboards tracking exact node performance, block histories, and structural reward yields.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Commission Section -->
+    <section id="rates" class="container">
+        <h2>Transparent <span>Commission Rates</span></h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Provider Name</th>
+                        <th>Standard Commission</th>
+                        <th>Server Architecture</th>
+                        <th>SLA Protection</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="highlight-row">
+                        <td>Mix Nodes <span class="tag-active">Best Value</span></td>
+                        <td>3.5% - 5.0%</td>
+                        <td>Hybrid Multi-Cloud + Bare-Metal</td>
+                        <td>99.99% Uptime Insurance</td>
+                    </tr>
+                    <tr>
+                        <td>Industry Average</td>
+                        <td>8.0% - 10.0%</td>
+                        <td>Single Cloud Provider</td>
+                        <td>Basic 99.0% SLA</td>
+                    </tr>
+                    <tr>
+                        <td>Legacy Custodians</td>
+                        <td>12.0%++</td>
+                        <td>Centralized Data Center</td>
+                        <td>Variable / Uncapped</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Mix Nodes. All rights reserved.</p>
+        <p style="font-size: 12px; color: rgba(255,255,255,0.3);">Securing the Decentralized Web3 Future.</p>
+    </footer>
+
+</body>
+</html>
