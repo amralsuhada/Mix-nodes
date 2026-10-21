@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mix Nodes | Profesional Web3 Node Validator</title>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #151d30;
+            --accent-color: #00ffcc;
+            --text-color: #ffffff;
+            --text-muted: #8fa0dd;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background-color: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #1e293b;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+        }
+        nav a:hover {
+            color: var(--accent-color);
+        }
+        .hero {
+            padding: 180px 20px 100px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #ffffff, var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+        .btn {
+            background-color: var(--accent-color);
+            color: #0b0f19;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            box-shadow: 0 0 15px var(--accent-color);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+            margin: 10px auto 0;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid #1e293b;
+            transition: 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+        .card h3 {
+            color: var(--accent-color);
+            margin-top: 0;
+        }
+        .card p {
+            color: var(--text-muted);
+            margin-bottom: 0;
+        }
+        footer {
+            background-color: #070a10;
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid #1e293b;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">MIX NODES</a>
+            <nav>
+                <a href="#layanan">Layanan</a>
+                <a href="#kelebihan">Kelebihan</a>
+                <a href="#kontak">Kontak</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Infrastruktur Validator Handal untuk Jaringan Web3 Anda</h1>
+        <p>Mix Nodes menjalankan node validator profesional dengan keamanan tingkat tinggi dan uptime maksimal untuk mendukung ekosistem blockchain perusahaan mitra kami.</p>
+        <a href="#kelebihan" class="btn">Pelajari Keunggulan</a>
+    </section>
+
+    <section id="layanan" class="container">
+        <h2>Layanan Utama</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Validator Operasional</h3>
+                <p>Menjalankan node validator institusional penuh untuk jaringan Proof-of-Stake (PoS) guna memastikan konsensus berjalan lancar.</p>
+            </div>
+            <div class="card">
+                <h3>Infrastruktur Terdesentralisasi</h3>
+                <p>Menggunakan arsitektur multi-cloud dan bare-metal untuk mencegah single point of failure pada jaringan mitra.</p>
+            </div>
+            <div class="card">
+                <h3>Keamanan Berlapis</h3>
+                <p>Proteksi DDoS tingkat lanjut dan sistem manajemen kunci (KMS) berbasis perangkat keras untuk mengamankan aset staking.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="kelebihan" class="container">
+        <h2>Mengapa Memilih Mix Nodes?</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>99.99% Uptime Bergaransi</h3>
+                <p>Sistem pemantauan 24/7 otomatis yang memastikan validator Anda selalu aktif dan meminimalkan risiko penalti slashing.</p>
+            </div>
+            <div class="card">
+                <h3>Tim Ahli Berpengalaman</h3>
+                <p>Dikelola oleh engineer DevOps dan pakar keamanan siber yang memiliki rekam jejak panjang di industri cryptocurrency.</p>
+            </div>
+            <div class="card">
+                <h3>Transparansi Penuh</h3>
+                <p>Kami menyediakan dasbor metrik real-time untuk memantau performa node, riwayat blok, dan imbalan hasil secara terbuka.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="kontak">
+        <p>&copy; 2026 Mix Nodes. All rights reserved. Menjaga Desentralisasi Masa Depan.</p>
+    </footer>
+
+</body>
+</html>
